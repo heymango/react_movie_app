@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import PropTypes from 'prop-types';
+function Food({name,picture, rating}){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>{name}</h2>
+      <h4>{rating}/5.0</h4>
+      <img src ={picture} />
     </div>
   );
 }
+
+const foodILike = [{
+  id : 1,
+  name : '안',
+  image : 'https://1.gall-img.com/hygall/files/attach/images/82/360/121/302/7056bd8e31e02efbec0a196075fa00d5.jpg',
+  rating : 5,
+},
+{
+  id : 2,
+  name : '녕',
+  image : 'https://1.gall-img.com/hygall/files/attach/images/82/360/121/302/7056bd8e31e02efbec0a196075fa00d5.jpg',
+  rating : 3,
+}]
+
+function renderFood(dish){
+  return <Food key = {dish.id} name ={dish.name} picture = {dish.image} rating = {dish.rating} />;
+}
+
+function App() {
+  return( 
+    <div>
+      {foodILike.map(renderFood)}
+      
+    </div>
+  );
+}
+
+Food.propTypes = {
+  name : PropTypes.string.isRequired,
+  picture : PropTypes.string.isRequired,
+  rating : PropTypes.number.isRequired,
+};
 
 export default App;
