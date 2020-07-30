@@ -1,45 +1,55 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-function Food({name,picture, rating}){
-  return (
-    <div>
-      <h2>{name}</h2>
-      <h4>{rating}/5.0</h4>
-      <img src ={picture} />
-    </div>
-  );
+import axios from 'axios';
+import Movie from './Movie';
+import './App.css';
+
+class App extends React.Component{
+  state = {
+    isLoading : true,
+    movies :[],
+  }
+  
+  getMovies =async() =>{
+    const {
+      data:{
+        data: {movies},
+      },
+    }=await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating");
+    this.setState({movies,isLoading:false});
+  }
+
+  componentDidMount(){
+    this.getMovies();
+  }
+
+  render(){
+    const {isLoading,movies} = this.state;
+    return (
+    <section className="container">
+       {isLoading?(
+         <div className = "loader">
+           <span className ="loater__text">Loading...</span>
+         </div>) : (
+           <div className ="movies">
+             {movies.map((movie)=>(
+                  <Movie 
+                    key = {movie.id}
+                    id={movie.id}
+                    year ={movie.year}
+                    title = {movie.title}
+                    summary = {movie.summary}
+                    poster = {movie.medium_cover_image}
+                    genres = {movie.genres}
+                  />
+             ))
+           }   
+           </div>
+         )}
+    </section>
+     
+   
+    );
+  }
 }
-
-const foodILike = [{
-  id : 1,
-  name : '안',
-  image : 'https://1.gall-img.com/hygall/files/attach/images/82/360/121/302/7056bd8e31e02efbec0a196075fa00d5.jpg',
-  rating : 5,
-},
-{
-  id : 2,
-  name : '녕',
-  image : 'https://1.gall-img.com/hygall/files/attach/images/82/360/121/302/7056bd8e31e02efbec0a196075fa00d5.jpg',
-  rating : 3,
-}]
-
-function renderFood(dish){
-  return <Food key = {dish.id} name ={dish.name} picture = {dish.image} rating = {dish.rating} />;
-}
-
-function App() {
-  return( 
-    <div>
-      {foodILike.map(renderFood)}
-      
-    </div>
-  );
-}
-
-Food.propTypes = {
-  name : PropTypes.string.isRequired,
-  picture : PropTypes.string.isRequired,
-  rating : PropTypes.number.isRequired,
-};
 
 export default App;
