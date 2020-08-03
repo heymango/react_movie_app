@@ -1,3 +1,45 @@
+*{   /*universal selector*/
+  box-sizing:border-box /*border두께의 크기포함해서 sizing*/
+}
+header{
+  margin : 20px;
+  margin-bottom: 300px;
+}
 body{
-  background-color: lightslategray;
+  margin : 0;
+  padding : 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #1F2020;
+  height : 100%;
+  color : #ffffff;
+}
+.movies{
+  display:grid;
+  grid-template-rows: repeat(7,minmax(500px,auto));
+  grid-template-columns: repeat(6,1fr);
+  scroll-behavior: smooth;
+}
+
+
+.loader img{
+  width : 50px;
+  height: 50px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-50px;
+  margin-top:-50px;
+  animation-name: spinImg;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease;
+}
+
+@keyframes spinImg{
+  from{
+    transform: translate(-50%,-50%)rotate(0);
+  }
+  to{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
 }

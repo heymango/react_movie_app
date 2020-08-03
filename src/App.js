@@ -2,6 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import Movie from './Movie';
 import './App.css';
+import logo from './image/logo.png';
+import loader from './image/loader.png';
 
 class App extends React.Component{
   state = {
@@ -25,10 +27,13 @@ class App extends React.Component{
   render(){
     const {isLoading,movies} = this.state;
     return (
-    <section className="container">
+      
+      <section className="container">
+        <header className="App-header"><img src={logo} alt="" /></header>
+        <body>
        {isLoading?(
          <div className = "loader">
-           <span className ="loater__text">Loading...</span>
+           <span className ="loader__img"><img id="loading-image" src={loader} alt=""/></span>
          </div>) : (
            <div className ="movies">
              {movies.map((movie)=>(
@@ -38,13 +43,15 @@ class App extends React.Component{
                     year ={movie.year}
                     title = {movie.title}
                     summary = {movie.summary}
-                    poster = {movie.medium_cover_image}
+                    poster = {movie.large_cover_image}
+                    backimg={movie.background_image}
                     genres = {movie.genres}
                   />
              ))
            }   
            </div>
-         )}
+           
+         )}</body>
     </section>
      
    

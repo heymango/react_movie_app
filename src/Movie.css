@@ -1,0 +1,82 @@
+.movies .moviecard{
+    position: relative;
+}
+.movies .moviecard .movie{
+    max-width:310px;
+   /* background-color: white;*/
+    margin-left : 3px;
+    margin-right: 3px;
+    margin-bottom: 70px;
+    font-weight: 300;
+    padding: 10px;
+    border-radius: 5px;
+    color:#adaeb9;
+    transition : 550ms all;
+    z-index: 1;
+}
+
+ .movies .moviecard .movie__data{
+    max-width:310px;
+    position: absolute;
+    margin-left : 3px;
+    margin-right: 3px;
+    margin-bottom: 70px;
+    font-weight: 300;
+    padding: 10px;
+    border-radius: 5px;
+    top : 10px;
+    
+}
+
+.movies .moviecard:hover .movie{
+    margin:0 20px;
+    transform:scale(1.2);
+    
+}
+.movies .moviecard:hover img{
+    opacity: 0.3;
+    
+}
+.movies .moviecard:hover .movie__data{
+    transition : 550ms all;
+    animation: fadein 2s;
+}
+
+
+.movie img{
+    position :relative;
+    max-width : 290px;
+    width : 100;  
+}
+
+
+.movie .movie__title{
+    max-width: 250px;
+    margin-bottom : 5px;
+    font-size : 25px;
+    font-family: sans-serif;
+    color :white;
+    font-weight :600;
+}
+
+.movie__data .movie__genres{
+    list-style : none;
+    padding : 0;
+    display : flex;
+    flex-wrap : wrap;
+    margin : 5px 0px;
+}
+
+.movie__genres li, .movie__data .movie__year{
+    margin-right :10px;
+    font-size : 14px;
+}
+
+@keyframes fadein{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
