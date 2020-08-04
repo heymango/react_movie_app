@@ -29,8 +29,7 @@ class App extends React.Component{
     return (
       
       <section className="container">
-        <header className="App-header"><img src={logo} alt="" /></header>
-        <body>
+        <header className="App-header"> <img src={logo} alt="" /></header>
        {isLoading?(
          <div className = "loader">
            <span className ="loader__img"><img id="loading-image" src={loader} alt=""/></span>
@@ -43,15 +42,16 @@ class App extends React.Component{
                     year ={movie.year}
                     title = {movie.title}
                     summary = {movie.summary}
-                    poster = {movie.large_cover_image}
+                    poster = {movie.medium_cover_image}
                     backimg={movie.background_image}
                     genres = {movie.genres}
+                    rating ={movie.rating}
                   />
              ))
            }   
            </div>
            
-         )}</body>
+         )}
     </section>
      
    
