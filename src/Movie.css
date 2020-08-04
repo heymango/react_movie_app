@@ -20,7 +20,10 @@
     padding: 10px;
     max-width:250px;
     min-width: 230px;
-   
+    overflow: auto;
+}
+.movies .moviecard .movie__data::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 .movies .moviecard .movie .movie__head{
     display: grid;
